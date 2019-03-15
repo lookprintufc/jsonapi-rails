@@ -13,7 +13,7 @@ describe JSONAPI::Rails::FilterMediaType do
 
   context 'when receiving JSON API Content-Type without media parameters' do
     it 'passes through' do
-      env = { 'CONTENT_TYPE' => 'application/vnd.api+json' }
+      env = { 'CONTENT_TYPE' => 'application/json' }
 
       expect(described_class.new(app).call(env)[0]).to eq(200)
     end
@@ -21,7 +21,7 @@ describe JSONAPI::Rails::FilterMediaType do
 
   context 'when receiving Content-Type with media parameters' do
     it 'fails with 415 Unsupported Media Type' do
-      env = { 'CONTENT_TYPE' => 'application/vnd.api+json; charset=utf-8' }
+      env = { 'CONTENT_TYPE' => 'application/json; charset=utf-8' }
 
       expect(described_class.new(app).call(env)[0]).to eq(415)
     end
@@ -37,7 +37,7 @@ describe JSONAPI::Rails::FilterMediaType do
 
   context 'when receiving JSON API in Accept without media parameters' do
     it 'passes through' do
-      env = { 'HTTP_ACCEPT' => 'application/vnd.api+json' }
+      env = { 'HTTP_ACCEPT' => 'application/json' }
 
       expect(described_class.new(app).call(env)[0]).to eq(200)
     end
@@ -45,7 +45,7 @@ describe JSONAPI::Rails::FilterMediaType do
 
   context 'when receiving JSON API in Accept without media parameters among others' do
     it 'passes through' do
-      env = { 'HTTP_ACCEPT' => 'application/json, application/vnd.api+json' }
+      env = { 'HTTP_ACCEPT' => 'application/json, application/json' }
 
       expect(described_class.new(app).call(env)[0]).to eq(200)
     end
@@ -53,7 +53,7 @@ describe JSONAPI::Rails::FilterMediaType do
 
   context 'when receiving JSON API in Accept with media parameters' do
     it 'fails with 406 Not Acceptable' do
-      env = { 'HTTP_ACCEPT' => 'application/vnd.api+json; charset=utf-8' }
+      env = { 'HTTP_ACCEPT' => 'application/json; charset=utf-8' }
 
       expect(described_class.new(app).call(env)[0]).to eq(406)
     end
@@ -61,7 +61,7 @@ describe JSONAPI::Rails::FilterMediaType do
 
   context 'when receiving JSON API in Accept with media parameters among others' do
     it 'fails with 406 Not Acceptable' do
-      env = { 'HTTP_ACCEPT' => 'application/json, application/vnd.api+json; charset=utf-8' }
+      env = { 'HTTP_ACCEPT' => 'application/json, application/json; charset=utf-8' }
 
       expect(described_class.new(app).call(env)[0]).to eq(406)
     end

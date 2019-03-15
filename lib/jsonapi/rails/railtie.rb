@@ -8,7 +8,7 @@ module JSONAPI
   module Rails
     # @private
     class Railtie < ::Rails::Railtie
-      MEDIA_TYPE = 'application/vnd.api+json'.freeze
+      MEDIA_TYPE = 'application/json'.freeze
       PARSER = lambda do |body|
         data = JSON.parse(body)
         hash = { _jsonapi: data }

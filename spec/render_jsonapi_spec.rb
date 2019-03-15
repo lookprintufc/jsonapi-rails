@@ -13,7 +13,7 @@ describe ActionController::Base, '#render', type: :controller do
     it 'renders a JSON API success document' do
       get :index
 
-      expect(response.content_type).to eq('application/vnd.api+json')
+      expect(response.content_type).to eq('application/json')
       expect(subject.key?('data')).to be true
     end
   end

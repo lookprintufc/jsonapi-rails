@@ -54,7 +54,7 @@ describe ActionController::Base, '#render', type: :controller do
     it 'renders a JSON API error document' do
       post :create
 
-      expect(response.content_type).to eq('application/vnd.api+json')
+      expect(response.content_type).to eq('application/json')
       is_expected.to eq(serialized_errors)
     end
   end
@@ -84,7 +84,7 @@ describe ActionController::Base, '#render', type: :controller do
     it 'renders a JSON API error document' do
       post :create
 
-      expect(response.content_type).to eq('application/vnd.api+json')
+      expect(response.content_type).to eq('application/json')
       is_expected.to eq(serialized_errors)
     end
   end

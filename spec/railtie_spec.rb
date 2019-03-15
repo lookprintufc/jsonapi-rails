@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe JSONAPI::Rails::Railtie do
   it 'registers the JSON API MIME type' do
-    expect(Mime[:jsonapi]).to eq('application/vnd.api+json')
+    expect(Mime[:jsonapi]).to eq('application/json')
   end
 
   it 'registers the params parser for the JSON API MIME type' do
